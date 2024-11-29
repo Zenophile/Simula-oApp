@@ -1,8 +1,7 @@
 import perfil
 from funções import cadastrar, login, apertei_enter_sem_querer
 from art import ascii_art2, ascii_art4
-
-#o arquivo bikefacil vulgo main.py é basicamente o primeiro menu do app, a bagunça(funções) estão no arquivo funções.py
+#o arquivo bikefacil vulgo main.py é basicamente o primeiro menu do app, a bagunça está no arquivo funções.py
 def print_usuario_logado():
     if perfil.usuario_logado:
         print(f'Usuário logado: {perfil.usuario_logado}')

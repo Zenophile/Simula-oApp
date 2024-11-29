@@ -1,10 +1,21 @@
 import perfil
-from art import ascii_art2, ascii_art3, ascii_art5, ascii_art6
+from art import ascii_art2, ascii_art3, ascii_art5, ascii_art6, ascii_art7
 from perfil import profile
 import time
 import math
 
-'''Como este programa não utilizará um GPS de fato, 
+'''
+EI EI EI OU OU OU CALMA AI, CALMA AI!
+Vocẽ quer mesmo ler esse código? eu não quis escrever, você vai querer ler mesmo?
+if resposta == sim eu recomendo fortemente essa playlist para não perder a sanidade:
+Youtube: https://www.youtube.com/watch?v=a82zOtTtR84&ab_channel=keepitcosy
+Spotify: https://open.spotify.com/playlist/7zkIn9DxMxBGgbh2Zdad1e
+Pronto, agora você está seguro(a) para prosseguir...
+
+Sim...
+
+
+Como este programa não utilizará um GPS de fato, 
 utilizaremos o Marco Zero da cidade do Recife como referência. 
 Todas as localizações a seguir terão suas distâncias calculadas em relação a este ponto..
 ------------------------------------------------
@@ -21,7 +32,7 @@ locais_recife = {
 }
 
 def apertei_enter_sem_querer(prompt):
-    """#Estava apertando enter sem querer muitas vezes na hora de testar o código
+    """Estava apertando enter sem querer muitas vezes na hora de testar o código
     então criei esse código que impede isso + umas frescurinhas"""
     while True:
         user_input = input(prompt)
@@ -42,7 +53,21 @@ def countdown(seconds):
         time.sleep(1)
 
 
+def adicionar_amigos():
+    while True:
+        adicionar = input('Digite o nome do seu amigo ou 2 para voltar\n')
+        if adicionar == '2':
+            break
+        else:
+            perfil.lista_amigos.append(adicionar)
+            print('Amigo adicionado!')
+            print(ascii_art7)
+
+
+
 def display_menu_and_get_selection(locais_recife):
+    """Está função é o prato principal da casa!, aqui teremos o menu para mostrar os locais disponíveis, selecionar e seguir
+    após isso ela fará alguns cálculos de economia de CO2, distância percorrida etc..."""
     while True:
         km_percorridos = 0
         for i, (key, value) in enumerate(locais_recife.items()):
@@ -154,15 +179,19 @@ def login(usuario, senha):
                                    '1. Visualizar Perfil\n'
                                    '2. Planejar Rota\n'
                                    '3. Formar Grupo\n'
-                                   '4. Sair.\n')
+                                   '4. Adicionar Amigo\n'
+                                   '5. Sair.\n')
                             escolha = apertei_enter_sem_querer("")
                             if escolha == 1:
                                 profile()
                             elif escolha == 2:
                                 rota()
                             elif escolha == 3:
-                                print('Under construction')
+                                print('1 Escolha um usuário da sua lista de amigos para adicionar ao grupo')
                             elif escolha == 4:
+                                adicionar_amigos()
+
+                            elif escolha == 5:
                                 print(ascii_art2)
                                 exit()
                             else:
@@ -184,4 +213,7 @@ def rota():
         display_menu_and_get_selection(locais_recife)
         break
 
-#Socorro Alan Turing, me ajuda, por favor.
+"""01010110 01001111 01000011 11000011 10001010 00100000 01000101 01010011 01010100 11000011
+ 10000001 00100000 01010000 01010010 01000101 SOCORRO! 01010011 01001111 00100000 01001110 01000101 
+ 01010011 01010011 01000101 00100000 01000011 11000011 10010011 01000100 01001001 01000111 
+ 01001111 00001010"""
