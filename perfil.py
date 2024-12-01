@@ -9,7 +9,12 @@ como kms percorridos e troféus, a cada 10km percorridos o usuário recebe um aw
 inflará o seu ego tanto quanto um like naquele seu story do insta, mas em adicional você também irá emagrecer =)'''
 
 def mostra_amigos():
-    return ', '.join(lista_amigos) if lista_amigos else 'Nenhum amigo adicioando'
+    if not lista_amigos:
+        return 'Nenhum amigo adicionado :('
+
+    enumerar_amigos = [f"{index + 1}. {amigo}" for index, amigo in enumerate(lista_amigos)]
+    return '\n'.join(enumerar_amigos)
+
 
 def add_km(km):
     global total_km
@@ -21,12 +26,11 @@ def add_award(award):
 
 def profile():
     while True:
-
         print(f'{ascii_art}')
         print(f'Olá {usuario_logado}\n'
-              f'KM PERCORRIDOS: {total_km}\n'
-              f'TROFÉUS: {total_award}\n'
-              f'Amigos: {mostra_amigos()}\n')
+              f'KMs PERCORRIDOS: {total_km}\n'
+              f'TROFÉUS: {total_award:.2f}\n'
+              f'Amigos:\n{mostra_amigos()}\n')
         escolha = int(input('1. Retornar ao Menu anterior'))
         if escolha == 1:
             break

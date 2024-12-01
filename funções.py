@@ -1,20 +1,10 @@
 import perfil
 from art import ascii_art2, ascii_art3, ascii_art5, ascii_art6, ascii_art7
-from perfil import profile
+from perfil import profile, mostra_amigos, lista_amigos
 import time
 import math
 
 '''
-EI EI EI OU OU OU CALMA AI, CALMA AI!
-Vocẽ quer mesmo ler esse código? eu não quis escrever, você vai querer ler mesmo?
-if resposta == sim eu recomendo fortemente essa playlist para não perder a sanidade:
-Youtube: https://www.youtube.com/watch?v=a82zOtTtR84&ab_channel=keepitcosy
-Spotify: https://open.spotify.com/playlist/7zkIn9DxMxBGgbh2Zdad1e
-Pronto, agora você está seguro(a) para prosseguir...
-
-Sim...
-
-
 Como este programa não utilizará um GPS de fato, 
 utilizaremos o Marco Zero da cidade do Recife como referência. 
 Todas as localizações a seguir terão suas distâncias calculadas em relação a este ponto..
@@ -64,6 +54,31 @@ def adicionar_amigos():
             print(ascii_art7)
 
 
+amigos_selecionados = set()  # Set to keep track of selected friends
+
+def selecionar_amigo():
+    while True:
+        print(mostra_amigos())
+        try:
+            index = int(input('Digite o número do amigo que deseja selecionar (0 para sair): ')) - 1
+            if index == -1:  # User input 0 (index will be -1)
+                print('Saindo da seleção de amigos.')
+                break
+            elif 0 <= index < len(lista_amigos):
+                amigo_selecionado = lista_amigos[index]
+                if amigo_selecionado in amigos_selecionados:
+                    print(f'{amigo_selecionado} já foi selecionado. Por favor, selecione outro amigo.')
+                else:
+                    amigos_selecionados.add(amigo_selecionado)
+                    print(f'Amigo selecionado: {amigo_selecionado}')
+                    # Optionally do something with the selected friend here
+            else:
+                print('Índice inválido. Por favor, tente novamente.')
+        except ValueError:
+            print('Entrada inválida. Por favor, insira um número.')
+
+
+
 
 def display_menu_and_get_selection(locais_recife):
     """Está função é o prato principal da casa!, aqui teremos o menu para mostrar os locais disponíveis, selecionar e seguir
@@ -102,7 +117,7 @@ def display_menu_and_get_selection(locais_recife):
                 co2 = (km_percorridos / 15)
                 print(ascii_art6)
                 print('Você chegou ao seu destino\n')
-                print(f'E deixou de emitir {co2} gramas de CO2 na nossa atmosfera =) \n')
+                print(f'E deixou de emitir {co2:.2f} gramas de CO2 na nossa atmosfera =) \n')
                 while True:
                     menu_escolha = apertei_enter_sem_querer('1. Voltar ao menu anterior \n'
                                                             '2. Sair do aplicativo')
@@ -187,7 +202,7 @@ def login(usuario, senha):
                             elif escolha == 2:
                                 rota()
                             elif escolha == 3:
-                                print('1 Escolha um usuário da sua lista de amigos para adicionar ao grupo')
+                                selecionar_amigo()
                             elif escolha == 4:
                                 adicionar_amigos()
 
